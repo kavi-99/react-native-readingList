@@ -9,7 +9,7 @@ function App() {
 
   //check number of times app is rendering
   useEffect(() => {
-      console.log('app rendered');
+      console.log('App rendered');
     });
 
   return (

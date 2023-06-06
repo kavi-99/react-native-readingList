@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import { View, ScrollView, Text, TextInput, Button, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToList } from '../../store/actions';
@@ -7,12 +7,22 @@ import { addToList } from '../../store/actions';
 export function SearchScreen({ navigation }) {
 
   const [articles, setArticles] = useState([]);
-  const [query, setQuery] = useState('');
-  const [isLoading, setLoading] = useState(true);
+  //const [query, setQuery] = useState('');
+  //const [isLoading, setLoading] = useState(true);
+  const isLoading = useRef(true);
+  const queryRef = useRef('');
 
   useEffect(() => {
     console.log('SearchScreen rendered')
   })
+
+  useEffect(() => {
+      console.log('SearchScreen rendered for articles')
+    }, [articles])
+
+    /*useEffect(() => {
+          console.log('SearchScreen rendered for query')
+     }, [query])*/
 
     useEffect(() => {
       fetchNews();
@@ -20,11 +30,12 @@ export function SearchScreen({ navigation }) {
 
     const fetchNews = () => {
       const apiKey = '7ebe02fc58bd4fbd979a78da29fdbb0a';
-      fetch(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`)
+      fetch(`https://newsapi.org/v2/everything?q=${queryRef.current}&apiKey=${apiKey}`)
         .then(response => response.json())
         .then(data => setArticles(data.articles))
         .catch(error => console.log('Error fetching news:', error))
-        .finally(() => setLoading(false));
+        .finally(() => isLoading.current = false);
+       //set isLoading to false once fetched.
     };
 
   const dispatch = useDispatch();
@@ -32,6 +43,7 @@ export function SearchScreen({ navigation }) {
   const handleAddArticle = (articleItem) => {
     dispatch(addToList(articleItem));
   }
+
 
   const addedArticles = useSelector( state => state.articles );
 
@@ -45,15 +57,16 @@ export function SearchScreen({ navigation }) {
         <TextInput
               style={{borderWidth: 1, borderColor: '#ccc', borderRadius: 6, padding: 8,}}
               placeholder="e.g., technology, health, TV"
-              onChangeText={newQuery => setQuery(newQuery)}
-              defaultValue={query}
+              //onChangeText={newQuery => setQuery(newQuery)}
+              onChangeText={ (newQuery) => { queryRef.current = newQuery } }
+              defaultValue={queryRef.current}
         />
 
-        <Button title='Search' onPress={() => fetchNews()}/>
+        <Button title='Search' onPress={ () => fetchNews() }/>
       </View>
 
       <View style={{flex: 1, padding: 4}}>
-        {isLoading? (
+        {isLoading.current ? (
           <ActivityIndicator />
         ) : (
         <ScrollView style={{flex:1, borderWidth: 1, borderColor: '#ccc', borderRadius: 4, padding: 10 }}>
@@ -76,9 +89,9 @@ export function SearchScreen({ navigation }) {
 
       <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'center', marginTop: 10, }}>
         <View style={{ marginRight: 15 }}>
-          <Button title="Screen 2" onPress={() => { navigation.navigate('Screen 2', { passedParam: query }); }} />
+          <Button title="Screen 2" onPress={() => { navigation.navigate('Screen 2', { passedParam: queryRef.current }); }} />
         </View>
-        <Button title="Open Modal" onPress={() => { navigation.navigate('Modal', { passedParam: query }); }} />
+        <Button title="Open Modal" onPress={() => { navigation.navigate('Modal', { passedParam: queryRef.current }); }} />
       </View>
 
     </View>
