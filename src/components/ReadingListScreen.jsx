@@ -1,9 +1,15 @@
 import React from 'react';
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { useSelector } from 'react-redux';
+import {useEffect} from 'react';
+
 
 export function ReadingListScreen({ navigation }) {
   const addedArticles = useSelector (state => state.articles);
+
+  useEffect(() => {
+        console.log('ReadingListScreen rendered')
+      });
 
   return(
 

@@ -4,9 +4,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { StackedScreens } from './src/components/StackedScreens.jsx';
 import { ListAndDetails } from './src/components/ListAndDetailsScreen.jsx';
+import {useEffect} from 'react';
+
 
 export function AppNavigator(){
     const Tab = createBottomTabNavigator();
+    useEffect(() => {
+                        console.log('AppNavigator rendered')
+                                                    })
     return(
        <NavigationContainer>
           {/*<Tab.Navigator screenOptions={{headerShown: false}}>*/}

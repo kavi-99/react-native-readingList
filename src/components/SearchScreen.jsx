@@ -10,6 +10,10 @@ export function SearchScreen({ navigation }) {
   const [query, setQuery] = useState('');
   const [isLoading, setLoading] = useState(true);
 
+  useEffect(() => {
+    console.log('SearchScreen rendered')
+  })
+
     useEffect(() => {
       fetchNews();
     }, []);

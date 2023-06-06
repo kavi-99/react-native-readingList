@@ -2,13 +2,17 @@ import React from 'react';
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromList } from '../../store/actions';
+import {useEffect} from 'react';
+
 
 export function ModalDetailsScreen({ route, navigation }) {
+
+    useEffect(() => {
+        console.log('ModalDetailsScreen rendered')
+      })
     const { passedParam } = route.params;
     const addedArticles = useSelector (state => state.articles);
     const addedArticle = addedArticles[passedParam];
-
-    console.log(addedArticles.length);
 
     const dispatch = useDispatch();
 

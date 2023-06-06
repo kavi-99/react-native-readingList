@@ -3,11 +3,14 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/createStore';
 import { AppNavigator } from './AppNavigator'
+import {useEffect} from 'react';
 
 function App() {
 
   //check number of times app is rendering
-  console.log();
+  useEffect(() => {
+      console.log('app rendered');
+    });
 
   return (
   <Provider store={store}>
