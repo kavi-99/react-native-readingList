@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "776976264225",
+    "project_id": "react-native-fileupload",
+    "storage_bucket": "react-native-fileupload.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776976264225:android:2beba25b1f53f5752dc760",
+        "android_client_info": {
+          "package_name": "com.testproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776976264225-rclugsg2ekqtamegvgpr86snquttk2ii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd8XvhCc7aN-7QGkKeSLjdEDShH5CCruI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776976264225-rclugsg2ekqtamegvgpr86snquttk2ii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

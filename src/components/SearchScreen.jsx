@@ -66,20 +66,18 @@ export function SearchScreen({ navigation }) {
       </View>
 
       <View style={{flex: 1, padding: 4}}>
-        {isLoading.current ? (
-          <ActivityIndicator />
-        ) : (
+        {
         <ScrollView style={{flex:1, borderWidth: 1, borderColor: '#ccc', borderRadius: 4, padding: 10 }}>
-            {articles && articles.map((article, index) => (
+            { isLoading.current ? ( <ActivityIndicator /> ) : ( articles && articles.map((article, index) => (
               <View key={index} style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10,}}>
                 <Text style={{fontSize: 15, flex: 1, marginRight: 8, color: 'black',}}>{article.title}</Text>
                 <TouchableOpacity onPress = { () => { handleAddArticle(article) }} style={{backgroundColor: 'green',padding: 6,borderRadius: 4,}}>
                   <Text style={{color: 'white',fontWeight: 'bold',}}>+</Text>
                 </TouchableOpacity>
               </View>
-            ))}
+            )))}
         </ScrollView>
-        )}
+        }
       </View>
 
       <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'center', marginRight: 10, }}>

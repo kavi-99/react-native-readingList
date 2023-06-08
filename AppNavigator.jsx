@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { StackedScreens } from './src/components/StackedScreens.jsx';
 import { ListAndDetails } from './src/components/ListAndDetailsScreen.jsx';
+import { ThirdScreen } from './src/components/ThirdScreen.jsx';
 import {useEffect} from 'react';
 
 
@@ -18,7 +19,7 @@ export function AppNavigator(){
           <Tab.Navigator>
             <Tab.Screen name="StackedScreens" component={StackedScreens} options={{ title: 'Home', headerShown: false}}/>
             <Tab.Screen name="Reading List Screens" component={ListAndDetails} options={{ title: `Reading List`, headerShown: false}} />
-            {/*<Tab.Screen name="Screen 3" component={ThirdScreen} options={{ title: 'Screen 3 (Empty)'}} />*/}
+            <Tab.Screen name="Screen 3" component={ThirdScreen} options={{ title: 'DocumentPicker'}} />
           </Tab.Navigator>
         </NavigationContainer>
     )
